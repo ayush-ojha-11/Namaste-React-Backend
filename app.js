@@ -1,7 +1,9 @@
 const express = require("express");
 const axios = require("axios");
 const app = express();
+const cors = require("cors");
 
+app.use(cors());
 app.get("/restaurantMenu", async (req, res) => {
   const resId = req.query.resId;
   try {
@@ -26,6 +28,6 @@ app.get("/restaurantMenu", async (req, res) => {
     res.status(500).send("Error occurred! " + error.message);
   }
 });
-app.listen(1000, () => {
+app.listen(1000, "0.0.0.0", () => {
   console.log("Listening to port 1000");
 });
