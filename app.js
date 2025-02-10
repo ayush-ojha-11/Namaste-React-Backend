@@ -4,11 +4,11 @@ const app = express();
 const cors = require("cors");
 
 app.use(cors());
+
 app.get("/restaurantMenu", async (req, res) => {
   const resId = req.query.resId;
   try {
     const MENU_URL = `https://www.swiggy.com/mapi/menu/pl?page-type=REGULAR_MENU&complete-menu=true&lat=28.7040592&lng=77.10249019999999&restaurantId=${resId}`;
-    console.log(MENU_URL);
 
     const response = await axios.get(
       MENU_URL,
@@ -22,7 +22,7 @@ app.get("/restaurantMenu", async (req, res) => {
       },
       { withCredentials: true }
     );
-    console.log(response.data);
+
     res.json(response.data);
   } catch (error) {
     res.status(500).send("Error occurred! " + error.message);
