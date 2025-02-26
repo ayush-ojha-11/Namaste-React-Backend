@@ -29,5 +29,5 @@ app.get("/restaurantMenu", async (req, res) => {
   }
 });
 app.listen(1000, "0.0.0.0", () => {
-  console.log("Listening to port 1000");
+  console.log("Listening to the port 1000");
 });
