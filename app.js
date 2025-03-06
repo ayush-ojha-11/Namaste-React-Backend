@@ -5,23 +5,29 @@ const cors = require("cors");
 
 app.use(cors());
 
+app.use(
+  cors({
+    origin: "https://its-your-food.netlify.app",
+    methods: "GET,POST,OPTIONS",
+    allowedHeaders: "Content-Type,Authorization",
+    credentials: true,
+  })
+);
+
 app.get("/restaurantMenu", async (req, res) => {
   const resId = req.query.resId;
   try {
     const MENU_URL = `https://www.swiggy.com/mapi/menu/pl?page-type=REGULAR_MENU&complete-menu=true&lat=28.7040592&lng=77.10249019999999&restaurantId=${resId}`;
 
-    const response = await axios.get(
-      MENU_URL,
-      {
-        headers: {
-          "User-Agent":
-            "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/91.0.4472.124 Safari/537.36",
-          Accept: "application/json",
-          "Accept-Encoding": "gzip, deflate, br",
-        },
+    const response = await axios.get(MENU_URL, {
+      headers: {
+        "User-Agent":
+          "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/91.0.4472.124 Safari/537.36",
+        Accept: "application/json",
+        "Accept-Encoding": "gzip, deflate, br",
       },
-      { withCredentials: true }
-    );
+      withCredentials: true,
+    });
 
     res.json(response.data);
   } catch (error) {
