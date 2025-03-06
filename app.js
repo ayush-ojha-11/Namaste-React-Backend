@@ -7,7 +7,7 @@ app.use(cors());
 
 app.use(
   cors({
-    origin: "https://its-your-food.netlify.app",
+    origin: "https://foodie-12.netlify.app",
     methods: "GET,POST,OPTIONS",
     allowedHeaders: "Content-Type,Authorization",
     credentials: true,
